@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tommy's Frisier-Domus — Heidelberg</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --dark: #111010;
+    --card: #161414;
+    --red: #c0392b;
+    --red-light: #e74c3c;
+    --cream: #f0ebe3;
+    --muted: #6b6560;
+    --line: rgba(255,255,255,0.06);
+  }
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+body {
+background: var(–black);
+color: var(–cream);
+font-family: ‘Barlow’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed; top:0; left:0; right:0; z-index:100;
+display: flex; align-items:center; justify-content:space-between;
+padding: 20px 56px;
+background: rgba(8,8,8,0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(–line);
+}
+.nav-logo {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 22px; letter-spacing: 3px;
+color: var(–cream);
+}
+.nav-logo span { color: var(–red); }
+.nav-links { display:flex; gap:40px; }
+.nav-links a {
+font-size: 11px; letter-spacing:3px; text-transform:uppercase;
+color: var(–muted); text-decoration:none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(–cream); }
+.nav-cta {
+font-size: 11px; letter-spacing:3px; text-transform:uppercase;
+padding: 12px 28px;
+border: 1px solid var(–red);
+color: var(–red); text-decoration:none;
+transition: all 0.2s;
+}
+.nav-cta:hover { background: var(–red); color: var(–cream); }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: flex; flex-direction: column; justify-content: flex-end;
+padding: 0 56px 80px;
+position: relative;
+overflow: hidden;
+}
+
+/* background stripes */
+.hero::before {
+content:’’;
+position:absolute; inset:0;
+background:
+linear-gradient(160deg, rgba(192,57,43,0.12) 0%, transparent 45%),
+repeating-linear-gradient(
+90deg,
+transparent, transparent 80px,
+rgba(255,255,255,0.012) 80px, rgba(255,255,255,0.012) 81px
+);
+}
+
+/* big background text */
+.hero-bg-text {
+position:absolute;
+bottom: -40px; left: -20px;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(180px, 22vw, 320px);
+color: rgba(255,255,255,0.025);
+line-height: 1;
+pointer-events:none; user-select:none;
+letter-spacing: -4px;
+}
+
+.hero-content { position:relative; z-index:1; }
+
+.hero-tag {
+font-size: 11px; letter-spacing:5px; text-transform:uppercase;
+color: var(–red); margin-bottom:20px;
+display:flex; align-items:center; gap:14px;
+animation: fadeUp 0.5s ease both;
+}
+.hero-tag::before {
+content:’’; display:block;
+width:40px; height:1px; background:var(–red);
+}
+
+.hero-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(72px, 11vw, 160px);
+line-height: 0.9;
+letter-spacing: 2px;
+color: var(–cream);
+margin-bottom: 32px;
+animation: fadeUp 0.5s 0.1s ease both;
+}
+.hero-title span { color: var(–red); }
+
+.hero-bottom {
+display:flex; justify-content:space-between; align-items:flex-end;
+animation: fadeUp 0.5s 0.2s ease both;
+}
+
+.hero-sub {
+font-size: 16px; line-height:1.7;
+color: rgba(240,235,227,0.45);
+max-width: 400px;
+}
+
+.hero-actions { display:flex; gap:14px; }
+
+.btn-primary {
+font-size: 11px; letter-spacing:3px; text-transform:uppercase;
+padding: 16px 36px;
+background: var(–red);
+color: var(–cream); text-decoration:none;
+transition: background 0.2s, transform 0.2s;
+display:inline-block;
+}
+.btn-primary:hover { background: var(–red-light); transform:translateY(-2px); }
+
+.btn-ghost {
+font-size: 11px; letter-spacing:3px; text-transform:uppercase;
+padding: 16px 36px;
+border: 1px solid rgba(240,235,227,0.15);
+color: rgba(240,235,227,0.4); text-decoration:none;
+transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(–cream); color: var(–cream); }
+
+/* ── SERVICES ── */
+.services {
+background: var(–dark);
+padding: 120px 56px;
+}
+
+.sec-header {
+display:flex; justify-content:space-between; align-items:flex-end;
+margin-bottom:60px;
+padding-bottom:28px;
+border-bottom:1px solid var(–line);
+}
+.sec-tag {
+font-size:11px; letter-spacing:4px; text-transform:uppercase;
+color:var(–red); margin-bottom:10px;
+}
+.sec-title {
+font-family:‘Bebas Neue’, sans-serif;
+font-size: clamp(36px, 5vw, 60px);
+letter-spacing:2px; line-height:1;
+}
+.sec-note {
+font-size:14px; color:var(–muted);
+max-width:260px; text-align:right; line-height:1.6;
+}
+
+.prices-grid {
+display:grid;
+grid-template-columns: repeat(3,1fr);
+gap:2px;
+}
+
+.price-card {
+background: var(–card);
+padding:40px 32px;
+position:relative; overflow:hidden;
+transition: background 0.3s;
+border-bottom:2px solid transparent;
+}
+.price-card:hover { border-bottom-color:var(–red); background:#1a1717; }
+.price-card.featured {
+background: var(–red);
+border-bottom-color: var(–red-light);
+}
+
+.price-label {
+font-size:11px; letter-spacing:3px; text-transform:uppercase;
+color:var(–muted); margin-bottom:16px;
+}
+.price-card.featured .price-label { color:rgba(240,235,227,0.6); }
+
+.price-name {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:32px; letter-spacing:2px;
+margin-bottom:8px;
+}
+
+.price-amount {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:52px; letter-spacing:1px;
+color:var(–red); line-height:1;
+margin-bottom:20px;
+}
+.price-card.featured .price-amount { color:var(–cream); }
+
+.price-includes {
+font-size:13px; line-height:1.9;
+color:var(–muted);
+}
+.price-card.featured .price-includes { color:rgba(240,235,227,0.7); }
+
+.price-includes li { list-style:none; padding-left:16px; position:relative; }
+.price-includes li::before {
+content:’—’; position:absolute; left:0;
+color:var(–red); font-size:11px;
+}
+.price-card.featured .price-includes li::before { color:rgba(240,235,227,0.5); }
+
+/* ── HOURS ── */
+.hours-section {
+padding: 100px 56px;
+background: var(–black);
+display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+
+.hours-left { }
+.hours-left .sec-title { margin-bottom:40px; }
+
+.hours-table { width:100%; border-collapse:collapse; }
+.hours-table tr { border-bottom:1px solid var(–line); }
+.hours-table tr:last-child { border-bottom:none; }
+.hours-table td { padding:14px 0; font-size:15px; }
+.hours-table td:first-child { color:var(–muted); }
+.hours-table td:last-child { text-align:right; color:var(–cream); font-weight:400; }
+.hours-table .today td { color:var(–red); }
+.hours-table .today td:last-child { color:var(–red); }
+.closed { color:var(–muted) !important; font-size:13px !important; }
+
+.hours-right {
+background:var(–card);
+padding:48px 40px;
+}
+.hours-cta-title {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:42px; letter-spacing:2px;
+margin-bottom:16px; line-height:1;
+}
+.hours-cta-sub {
+font-size:14px; line-height:1.7;
+color:var(–muted); margin-bottom:36px;
+}
+.phone-num {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:36px; letter-spacing:2px;
+color:var(–red); margin-bottom:8px;
+display:block; text-decoration:none;
+transition: color 0.2s;
+}
+.phone-num:hover { color:var(–red-light); }
+.phone-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(–muted); }
+
+/* ── GALLERY teaser ── */
+.gallery {
+padding:0;
+display:grid;
+grid-template-columns: 2fr 1fr 1fr;
+grid-template-rows: 280px;
+gap:2px;
+}
+.gallery-item {
+background: var(–card);
+display:flex; align-items:center; justify-content:center;
+font-size:48px;
+overflow:hidden;
+position:relative;
+}
+.gallery-item::after {
+content:‘Foto’;
+position:absolute; bottom:16px; left:16px;
+font-size:10px; letter-spacing:3px; text-transform:uppercase;
+color:rgba(255,255,255,0.2);
+}
+.gallery-item span { font-size:64px; opacity:0.15; }
+
+/* ── FOOTER ── */
+footer {
+background:var(–dark);
+padding:40px 56px;
+display:flex; justify-content:space-between; align-items:center;
+border-top:1px solid var(–line);
+}
+.footer-logo {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:20px; letter-spacing:3px;
+}
+.footer-logo span { color:var(–red); }
+.footer-addr { font-size:13px; color:var(–muted); }
+.footer-copy { font-size:11px; color:rgba(255,255,255,0.15); letter-spacing:2px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(20px); }
+to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── MOBILE ── */
+@media (max-width:860px) {
+nav { padding:16px 24px; }
+.nav-links { display:none; }
+.hero { padding:0 24px 60px; }
+.hero-bottom { flex-direction:column; align-items:flex-start; gap:28px; }
+.services { padding:80px 24px; }
+.prices-grid { grid-template-columns:1fr; }
+.sec-header { flex-direction:column; align-items:flex-start; gap:12px; }
+.sec-note { text-align:left; }
+.hours-section { grid-template-columns:1fr; padding:80px 24px; gap:40px; }
+.gallery { grid-template-columns:1fr 1fr; grid-template-rows:200px 200px; }
+.gallery-item:first-child { grid-column:1/-1; }
+footer { padding:28px 24px; flex-direction:column; gap:10px; text-align:center; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Tommy<span>'</span>s</div>
+  <div class="nav-links">
+    <a href="#services">Preise</a>
+    <a href="#hours">Öffnungszeiten</a>
+    <a href="#hours">Kontakt</a>
+  </div>
+  <a href="tel:+496221831299" class="nav-cta">Anrufen</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-bg-text">CUT</div>
+  <div class="hero-content">
+    <div class="hero-tag">Heidelberg · Wieblingen</div>
+    <h1 class="hero-title">
+      Tommy<span>'</span>s<br>Frisier<span>-</span>Domus
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Klassische Herrenhaarschnitte und moderne Styles — seit Jahren Ihr Friseur in Heidelberg-Wieblingen. Präzise. Persönlich. Preiswert.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:+496221831299" class="btn-primary">Termin buchen</a>
+        <a href="#services" class="btn-ghost">Unsere Preise</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY teaser -->
+
+<div class="gallery">
+  <div class="gallery-item"><span>✂️</span></div>
+  <div class="gallery-item"><span>💈</span></div>
+  <div class="gallery-item"><span>🪒</span></div>
+</div>
+
+<!-- PRICES -->
+
+<section class="services" id="services">
+  <div class="sec-header">
+    <div>
+      <div class="sec-tag">Leistungen & Preise</div>
+      <h2 class="sec-title">Was wir anbieten</h2>
+    </div>
+    <p class="sec-note">Faire Preise, saubere Arbeit. Keine Überraschungen.</p>
+  </div>
+
+  <div class="prices-grid">
+    <div class="price-card">
+      <div class="price-label">Standard</div>
+      <div class="price-name">Herrenhaarschnitt</div>
+      <div class="price-amount">16€</div>
+      <ul class="price-includes">
+        <li>Waschen & Schneiden</li>
+        <li>Föhnen & Stylen</li>
+        <li>Finish mit Öl</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-label">Beliebt</div>
+      <div class="price-name">Cut & Beard</div>
+      <div class="price-amount">28€</div>
+      <ul class="price-includes">
+        <li>Haarschnitt komplett</li>
+        <li>Bartpflege & Konturieren</li>
+        <li>Rasur mit heißem Tuch</li>
+        <li>Finish & Styling</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Premium</div>
+      <div class="price-name">Royal Shave</div>
+      <div class="price-amount">22€</div>
+      <ul class="price-includes">
+        <li>Nassrasur klassisch</li>
+        <li>Heißes Handtuch</li>
+        <li>Gesichtspflege</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+
+<section class="hours-section" id="hours">
+  <div class="hours-left">
+    <div class="sec-tag">Öffnungszeiten</div>
+    <h2 class="sec-title">Wann wir<br>für Sie da sind</h2>
+    <table class="hours-table">
+      <tr><td>Montag</td><td class="closed">Geschlossen</td></tr>
+      <tr><td>Dienstag</td><td>08:00 – 18:00</td></tr>
+      <tr><td>Mittwoch</td><td>08:00 – 18:00</td></tr>
+      <tr><td>Donnerstag</td><td>08:00 – 18:00</td></tr>
+      <tr><td>Freitag</td><td>08:00 – 18:00</td></tr>
+      <tr><td>Samstag</td><td>08:00 – 14:00</td></tr>
+      <tr><td>Sonntag</td><td class="closed">Geschlossen</td></tr>
+    </table>
+  </div>
+
+  <div class="hours-right">
+    <div class="hours-cta-title">Kein Termin<br>nötig.</div>
+    <p class="hours-cta-sub">Einfach vorbeikommen — wir freuen uns auf Sie. Oder rufen Sie uns kurz an.</p>
+    <a href="tel:+496221831299" class="phone-num">+49 6221 831299</a>
+    <div class="phone-label">Mannheimer Str. 185 · 69123 Heidelberg</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Tommy<span>'</span>s Frisier-Domus</div>
+  <div class="footer-addr">Mannheimer Str. 185 · Heidelberg-Wieblingen</div>
+  <div class="footer-copy">© 2025</div>
+</footer>
+
+</body>
+</html>
