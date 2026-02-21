@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zum Hirsch — Restaurant Heidelberg</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0b08;
+    --card: #131109;
+    --surface: #1a1710;
+    --gold: #d4a853;
+    --gold2: #f0c870;
+    --rust: #8b3a1a;
+    --cream: #f2ead8;
+    --muted: #7a7060;
+    --line: rgba(212,168,83,0.12);
+  }
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+body {
+background: var(–bg);
+color: var(–cream);
+font-family: ‘Outfit’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position:fixed; top:0; left:0; right:0; z-index:100;
+display:flex; align-items:center; justify-content:space-between;
+padding: 22px 60px;
+background: rgba(13,11,8,0.96);
+backdrop-filter: blur(16px);
+border-bottom: 1px solid var(–line);
+}
+.nav-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 20px;
+color: var(–cream);
+letter-spacing: 0.5px;
+}
+.nav-logo em { font-style:italic; color:var(–gold); }
+.nav-links { display:flex; gap:40px; }
+.nav-links a {
+font-size:11px; letter-spacing:3px; text-transform:uppercase;
+color:var(–muted); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover { color:var(–cream); }
+.nav-cta {
+font-size:11px; letter-spacing:2px; text-transform:uppercase;
+padding:12px 26px;
+background: var(–gold);
+color: var(–bg);
+text-decoration:none; font-weight:500;
+transition: background 0.2s;
+}
+.nav-cta:hover { background: var(–gold2); }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: grid;
+grid-template-columns: 1.1fr 0.9fr;
+}
+
+.hero-left {
+display:flex; flex-direction:column; justify-content:center;
+padding: 140px 72px 100px 80px;
+position:relative; overflow:hidden;
+}
+
+/* diagonal texture */
+.hero-left::before {
+content:’’;
+position:absolute; inset:0;
+background:
+radial-gradient(ellipse at 20% 60%, rgba(212,168,83,0.08) 0%, transparent 60%),
+repeating-linear-gradient(
+-55deg,
+transparent, transparent 30px,
+rgba(212,168,83,0.015) 30px, rgba(212,168,83,0.015) 31px
+);
+}
+
+.hero-eyebrow {
+display:flex; align-items:center; gap:14px;
+font-size:11px; letter-spacing:5px; text-transform:uppercase;
+color:var(–gold); margin-bottom:28px;
+animation: fadeUp 0.6s ease both;
+}
+.hero-eyebrow::before {
+content:’’; display:block;
+width:36px; height:1px; background:var(–gold);
+}
+
+.hero-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(52px, 6.5vw, 88px);
+line-height: 1.05;
+color: var(–cream);
+margin-bottom: 14px;
+position:relative; z-index:1;
+animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero-title em {
+font-style:italic;
+color: var(–gold);
+display:block;
+}
+
+.hero-sub {
+font-size: 16px; line-height:1.8;
+color: rgba(242,234,216,0.45);
+max-width: 420px;
+margin-bottom: 48px;
+position:relative; z-index:1;
+animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-actions {
+display:flex; gap:14px; flex-wrap:wrap;
+position:relative; z-index:1;
+animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.btn-gold {
+font-size:11px; letter-spacing:3px; text-transform:uppercase;
+padding:16px 36px;
+background: var(–gold);
+color: var(–bg); text-decoration:none; font-weight:500;
+transition: all 0.2s; display:inline-block;
+}
+.btn-gold:hover { background:var(–gold2); transform:translateY(-2px); }
+
+.btn-outline {
+font-size:11px; letter-spacing:3px; text-transform:uppercase;
+padding:16px 36px;
+border: 1px solid rgba(242,234,216,0.15);
+color:rgba(242,234,216,0.4); text-decoration:none;
+transition:all 0.2s;
+}
+.btn-outline:hover { border-color:var(–gold); color:var(–gold); }
+
+/* hero right — mood board */
+.hero-right {
+display:grid;
+grid-template-rows: 1fr 1fr;
+grid-template-columns: 1fr 1fr;
+gap:2px;
+padding-top: 80px;
+}
+
+.mood-block {
+background: var(–surface);
+display:flex; align-items:center; justify-content:center;
+font-size:52px;
+position:relative; overflow:hidden;
+}
+.mood-block::after {
+content: attr(data-label);
+position:absolute; bottom:14px; left:16px;
+font-size:10px; letter-spacing:3px; text-transform:uppercase;
+color:rgba(212,168,83,0.3);
+}
+.mood-block:first-child {
+grid-row: 1/-1;
+font-size:80px;
+}
+
+.hero-badge {
+position:absolute; top:100px; right:0;
+background: var(–gold);
+color: var(–bg);
+padding:14px 20px;
+font-size:11px; letter-spacing:2px; text-transform:uppercase;
+font-weight:500; writing-mode:vertical-rl;
+text-orientation:mixed;
+}
+
+/* ── MENU PREVIEW ── */
+.menu-section {
+padding: 120px 80px;
+background: var(–card);
+}
+
+.sec-header {
+display:flex; justify-content:space-between; align-items:flex-end;
+margin-bottom:60px;
+padding-bottom:28px;
+border-bottom:1px solid var(–line);
+}
+.sec-tag {
+font-size:11px; letter-spacing:4px; text-transform:uppercase;
+color:var(–gold); margin-bottom:10px;
+}
+.sec-title {
+font-family:‘Playfair Display’, serif;
+font-size:clamp(32px, 4vw, 52px);
+line-height:1.1;
+}
+.sec-note { font-size:14px; color:var(–muted); max-width:240px; text-align:right; line-height:1.6; }
+
+.menu-grid {
+display:grid;
+grid-template-columns: repeat(3,1fr);
+gap:2px;
+}
+
+.menu-card {
+background: var(–surface);
+padding:36px 30px;
+position:relative;
+border-top:2px solid transparent;
+transition:all 0.3s;
+}
+.menu-card:hover { border-top-color:var(–gold); background:#201d14; }
+
+.menu-cat {
+font-size:10px; letter-spacing:4px; text-transform:uppercase;
+color:var(–gold); margin-bottom:20px;
+}
+
+.menu-item {
+display:flex; justify-content:space-between; align-items:baseline;
+padding:12px 0;
+border-bottom:1px solid rgba(212,168,83,0.08);
+}
+.menu-item:last-child { border-bottom:none; }
+
+.item-name {
+font-family:‘Playfair Display’, serif;
+font-size:16px; color:var(–cream);
+flex:1;
+}
+.item-desc {
+font-size:12px; color:var(–muted); margin-top:3px;
+}
+.item-price {
+font-size:15px; color:var(–gold);
+font-weight:400; margin-left:16px; white-space:nowrap;
+}
+
+/* ── ATMOSPHERE ── */
+.atmosphere {
+background: var(–bg);
+padding: 120px 80px;
+display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+
+.atm-left .sec-title { margin-bottom:20px; }
+.atm-left p {
+font-size:16px; line-height:1.9;
+color:rgba(242,234,216,0.45); margin-bottom:36px;
+}
+
+.atm-details { display:flex; flex-direction:column; gap:2px; }
+.atm-row {
+display:flex; gap:20px; align-items:flex-start;
+background:var(–surface); padding:20px 24px;
+border-left:2px solid transparent;
+transition:border-color 0.2s;
+}
+.atm-row:hover { border-left-color:var(–gold); }
+.atm-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+.atm-title { font-size:14px; font-weight:500; color:var(–cream); margin-bottom:3px; }
+.atm-desc { font-size:13px; color:var(–muted); line-height:1.5; }
+
+.atm-right {
+display:grid; grid-template-columns:1fr 1fr;
+grid-template-rows:220px 220px; gap:2px;
+}
+.atm-photo {
+background:var(–surface);
+display:flex; align-items:center; justify-content:center;
+font-size:48px;
+}
+.atm-photo:first-child { grid-row:1/-1; }
+
+/* ── RESERVATION ── */
+.reservation {
+background: var(–card);
+padding: 120px 80px;
+display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;
+}
+
+.res-left .sec-title { margin-bottom:14px; }
+.res-left > p { font-size:15px; color:var(–muted); line-height:1.8; margin-bottom:40px; }
+
+.hours-list { display:flex; flex-direction:column; gap:0; }
+.hours-row {
+display:flex; justify-content:space-between;
+padding:13px 0;
+border-bottom:1px solid var(–line);
+font-size:14px;
+}
+.hours-row:last-child { border-bottom:none; }
+.hours-row .day { color:var(–muted); }
+.hours-row .time { color:var(–cream); }
+.hours-row .closed-txt { color:rgba(242,234,216,0.2); font-size:13px; }
+
+.res-form { background:var(–surface); padding:48px 40px; }
+.res-form-title {
+font-family:‘Playfair Display’, serif;
+font-size:26px; margin-bottom:32px;
+}
+.res-form-title em { font-style:italic; color:var(–gold); }
+
+.fg { margin-bottom:18px; }
+.fg label {
+display:block; font-size:10px; letter-spacing:3px; text-transform:uppercase;
+color:var(–muted); margin-bottom:8px;
+}
+.fg input, .fg select, .fg textarea {
+width:100%; padding:14px 16px;
+background:var(–card);
+border:1px solid transparent;
+color:var(–cream);
+font-family:‘Outfit’, sans-serif; font-size:14px;
+outline:none; transition:border-color 0.2s; resize:none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+border-color:var(–gold);
+}
+.fg select option { background:var(–card); }
+.fg textarea { height:80px; }
+.fg-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+.res-submit {
+width:100%; padding:16px;
+background:var(–gold); color:var(–bg);
+font-family:‘Outfit’, sans-serif;
+font-size:11px; letter-spacing:3px; text-transform:uppercase;
+font-weight:500; border:none; cursor:pointer;
+transition:background 0.2s;
+}
+.res-submit:hover { background:var(–gold2); }
+
+/* ── FOOTER ── */
+footer {
+background:var(–bg);
+padding:40px 80px;
+display:flex; justify-content:space-between; align-items:center;
+border-top:1px solid var(–line);
+}
+.footer-logo {
+font-family:‘Playfair Display’, serif;
+font-size:18px;
+}
+.footer-logo em { font-style:italic; color:var(–gold); }
+.footer-addr { font-size:12px; color:var(–muted); }
+.footer-copy { font-size:11px; color:rgba(255,255,255,0.12); letter-spacing:1px; }
+
+/* ── ANIMS ── */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(20px); }
+to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── MOBILE ── */
+@media (max-width:880px) {
+nav { padding:16px 24px; }
+.nav-links { display:none; }
+.hero { grid-template-columns:1fr; }
+.hero-left { padding:120px 28px 60px; }
+.hero-right { display:none; }
+.hero-badge { display:none; }
+.menu-section { padding:80px 28px; }
+.menu-grid { grid-template-columns:1fr; }
+.sec-header { flex-direction:column; align-items:flex-start; gap:12px; }
+.sec-note { text-align:left; }
+.atmosphere { grid-template-columns:1fr; padding:80px 28px; gap:48px; }
+.atm-right { display:none; }
+.reservation { grid-template-columns:1fr; padding:80px 28px; gap:40px; }
+footer { padding:28px 24px; flex-direction:column; gap:10px; text-align:center; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Zum <em>Hirsch</em></div>
+  <div class="nav-links">
+    <a href="#menu">Speisekarte</a>
+    <a href="#about">Atmosphäre</a>
+    <a href="#reservation">Reservierung</a>
+  </div>
+  <a href="#reservation" class="nav-cta">Tisch reservieren</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Heidelberg · Wieblingen · Seit 1987</div>
+    <h1 class="hero-title">
+      Echte deutsche
+      <em>Küche.</em>
+    </h1>
+    <p class="hero-sub">
+      Hausgemachte Schnitzel, frische Zutaten, herzliche Atmosphäre. Das Zum Hirsch — Ihr Wohnzimmer in Heidelberg-Wieblingen.
+    </p>
+    <div class="hero-actions">
+      <a href="#reservation" class="btn-gold">Tisch reservieren</a>
+      <a href="#menu" class="btn-outline">Speisekarte</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="mood-block" data-label="Küche">🍖</div>
+    <div class="mood-block" data-label="Wein">🍷</div>
+    <div class="mood-block" data-label="Bier">🍺</div>
+  </div>
+
+  <div class="hero-badge">Biergarten geöffnet</div>
+</section>
+
+<!-- MENU PREVIEW -->
+
+<section class="menu-section" id="menu">
+  <div class="sec-header">
+    <div>
+      <div class="sec-tag">Unsere Küche</div>
+      <h2 class="sec-title">Auszug aus der<br>Speisekarte</h2>
+    </div>
+    <p class="sec-note">Saisonale Gerichte, täglich frisch zubereitet.</p>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-cat">Hauptgerichte</div>
+      <div class="menu-item">
+        <div>
+          <div class="item-name">Wiener Schnitzel</div>
+          <div class="item-desc">mit Kartoffelsalat & Preiselbeeren</div>
+        </div>
+        <div class="item-price">17,50€</div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="item-name">Sauerbraten</div>
+          <div class="item-desc">mit Rotkohl & Klößen</div>
+        </div>
+        <div class="item-price">18,90€</div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="item-name">Zwiebelrostbraten</div>
+          <div class="item-desc">mit Bratkartoffeln</div>
+        </div>
+        <div class="item-price">21,50€</div>
+      </div>
+    </div>
+
+```
+<div class="menu-card">
+  <div class="menu-cat">Vorspeisen</div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Maultaschen</div>
+      <div class="item-desc">in Butter geschwenkt</div>
+    </div>
+    <div class="item-price">9,50€</div>
+  </div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Leberknödelsuppe</div>
+      <div class="item-desc">hausgemachte Brühe</div>
+    </div>
+    <div class="item-price">7,90€</div>
+  </div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Wurstsalat</div>
+      <div class="item-desc">mit Brot & Essiggurken</div>
+    </div>
+    <div class="item-price">8,50€</div>
+  </div>
+</div>
+
+<div class="menu-card">
+  <div class="menu-cat">Getränke</div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Heidelberger Pils</div>
+      <div class="item-desc">0,5l vom Fass</div>
+    </div>
+    <div class="item-price">3,80€</div>
+  </div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Badischer Wein</div>
+      <div class="item-desc">0,2l Haus-Schorle</div>
+    </div>
+    <div class="item-price">4,20€</div>
+  </div>
+  <div class="menu-item">
+    <div>
+      <div class="item-name">Apfelschorle</div>
+      <div class="item-desc">regional, 0,3l</div>
+    </div>
+    <div class="item-price">2,80€</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ATMOSPHERE -->
+
+<section class="atmosphere" id="about">
+  <div class="atm-left">
+    <div class="sec-tag">Über uns</div>
+    <h2 class="sec-title">Mehr als<br>nur ein Restaurant.</h2>
+    <p>Seit über 35 Jahren ist das Zum Hirsch ein fester Teil von Heidelberg-Wieblingen. Hier trifft sich die Nachbarschaft, werden Geburtstage gefeiert und Geschäfte besiegelt.</p>
+    <div class="atm-details">
+      <div class="atm-row">
+        <div class="atm-icon">🌿</div>
+        <div>
+          <div class="atm-title">Biergarten</div>
+          <div class="atm-desc">Unser schattiger Biergarten fasst bis zu 60 Personen — ideal für warme Sommerabende.</div>
+        </div>
+      </div>
+      <div class="atm-row">
+        <div class="atm-icon">🎉</div>
+        <div>
+          <div class="atm-title">Feiern & Events</div>
+          <div class="atm-desc">Privaträume für bis zu 40 Personen — für Geburtstage, Betriebsfeiern & Familienfeste.</div>
+        </div>
+      </div>
+      <div class="atm-row">
+        <div class="atm-icon">🅿️</div>
+        <div>
+          <div class="atm-title">Parkplatz vorhanden</div>
+          <div class="atm-desc">Direkte Parkmöglichkeiten vor dem Restaurant — auch abends problemlos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="atm-right">
+    <div class="atm-photo">🍽️</div>
+    <div class="atm-photo">🌿</div>
+    <div class="atm-photo">🕯️</div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+
+<section class="reservation" id="reservation">
+  <div class="res-left">
+    <div class="sec-tag">Reservierung</div>
+    <h2 class="sec-title">Ihren Tisch<br>reservieren</h2>
+    <p>Wir freuen uns auf Ihren Besuch. Reservierungen sind sehr empfehlenswert — besonders am Wochenende.</p>
+    <div class="hours-list">
+      <div class="hours-row"><span class="day">Montag</span><span class="closed-txt">Ruhetag</span></div>
+      <div class="hours-row"><span class="day">Di – Do</span><span class="time">17:00 – 23:00</span></div>
+      <div class="hours-row"><span class="day">Freitag</span><span class="time">17:00 – 00:00</span></div>
+      <div class="hours-row"><span class="day">Samstag</span><span class="time">17:00 – 00:00</span></div>
+      <div class="hours-row"><span class="day">Sonntag</span><span class="closed-txt">Ruhetag</span></div>
+    </div>
+  </div>
+
+  <div class="res-form">
+    <div class="res-form-title">Tisch <em>anfragen</em></div>
+    <div class="fg-row">
+      <div class="fg">
+        <label>Datum</label>
+        <input type="date">
+      </div>
+      <div class="fg">
+        <label>Uhrzeit</label>
+        <select>
+          <option>17:00</option><option>18:00</option><option>19:00</option>
+          <option>20:00</option><option>21:00</option><option>22:00</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg-row">
+      <div class="fg">
+        <label>Personen</label>
+        <select>
+          <option>1–2 Personen</option><option>3–4 Personen</option>
+          <option>5–6 Personen</option><option>7+ Personen</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Telefon</label>
+        <input type="tel" placeholder="+49 ...">
+      </div>
+    </div>
+    <div class="fg">
+      <label>Name</label>
+      <input type="text" placeholder="Ihr Name">
+    </div>
+    <div class="fg">
+      <label>Anmerkungen</label>
+      <textarea placeholder="Allergien, besondere Wünsche..."></textarea>
+    </div>
+    <button class="res-submit">Reservierung anfragen →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Zum <em>Hirsch</em></div>
+  <div class="footer-addr">Maßstraße 27 · 69123 Heidelberg-Wieblingen · +49 6221 840963</div>
+  <div class="footer-copy">© 2025</div>
+</footer>
+
+</body>
+</html>
