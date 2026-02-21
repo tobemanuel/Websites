@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keser Hausmeisterservice — Heidelberg & Umgebung</title>
+<meta name="description" content="Bülent Keser Hausmeisterservice – Ihr zuverlässiger Allrounder in Heidelberg. Reparaturen, Reinigung, Winterdienst, Entrümpelung & mehr. Jetzt anrufen.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0c0a;
+    --dark: #141210;
+    --card: #1c1a16;
+    --gold: #c9a96e;
+    --gold2: #e8c98e;
+    --cream: #f4efe6;
+    --off: #eee9df;
+    --text: #26221c;
+    --muted: #8a8070;
+    --line: rgba(201,169,110,0.15);
+  }
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+body {
+background: var(–cream);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position:fixed; top:0; left:0; right:0; z-index:100;
+display:flex; align-items:center; justify-content:space-between;
+padding: 18px 56px;
+background: rgba(244,239,230,0.95);
+backdrop-filter: blur(14px);
+border-bottom: 1px solid var(–line);
+}
+.nav-logo {
+font-family:‘DM Serif Display’, serif;
+font-size:17px; color:var(–black);
+}
+.nav-logo span { color:var(–gold); }
+.nav-links { display:flex; gap:36px; }
+.nav-links a {
+font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+color:var(–muted); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover { color:var(–text); }
+.nav-tel {
+font-size:13px; font-weight:500;
+color:var(–black); text-decoration:none;
+display:flex; align-items:center; gap:8px;
+transition: color 0.2s;
+}
+.nav-tel:hover { color:var(–gold); }
+.nav-tel::before { content:‘📞’; font-size:12px; }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display:grid; grid-template-columns:1fr 1fr;
+padding-top:70px;
+}
+
+.hero-left {
+background: var(–black);
+display:flex; flex-direction:column; justify-content:center;
+padding: 80px 64px 80px 80px;
+position:relative; overflow:hidden;
+}
+.hero-left::before {
+content:’’;
+position:absolute; inset:0;
+background:
+radial-gradient(ellipse at 0% 100%, rgba(201,169,110,0.1) 0%, transparent 60%),
+repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(201,169,110,0.02) 50px, rgba(201,169,110,0.02) 51px);
+}
+
+.hero-badge {
+display:inline-flex; align-items:center; gap:10px;
+font-size:10px; letter-spacing:4px; text-transform:uppercase;
+color:var(–gold); margin-bottom:28px;
+animation:fadeUp 0.5s ease both;
+}
+.hero-badge::before { content:’’; display:block; width:28px; height:1px; background:var(–gold); }
+
+h1 {
+font-family:‘DM Serif Display’, serif;
+font-size:clamp(40px, 5.5vw, 68px);
+line-height:1.08; color:var(–cream);
+margin-bottom:24px;
+position:relative; z-index:1;
+animation:fadeUp 0.5s 0.1s ease both;
+}
+h1 em { font-style:italic; color:var(–gold); }
+
+.hero-desc {
+font-size:15px; line-height:1.8;
+color:rgba(244,239,230,0.45);
+max-width:380px; margin-bottom:48px;
+position:relative; z-index:1;
+animation:fadeUp 0.5s 0.2s ease both;
+}
+
+.hero-ctas {
+display:flex; gap:12px; flex-wrap:wrap;
+position:relative; z-index:1;
+animation:fadeUp 0.5s 0.3s ease both;
+}
+
+.btn-gold {
+font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+padding:15px 32px; background:var(–gold); color:var(–black);
+text-decoration:none; font-weight:500;
+transition:all 0.2s; display:inline-block;
+}
+.btn-gold:hover { background:var(–gold2); transform:translateY(-2px); }
+
+.btn-outline {
+font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+padding:15px 32px;
+border:1px solid rgba(244,239,230,0.2);
+color:rgba(244,239,230,0.5); text-decoration:none;
+transition:all 0.2s;
+}
+.btn-outline:hover { border-color:var(–gold); color:var(–gold); }
+
+/* hero right — info cards */
+.hero-right {
+background:var(–off);
+display:grid;
+grid-template-columns:1fr 1fr;
+grid-template-rows:1fr 1fr;
+gap:2px;
+position:relative;
+}
+
+.info-card {
+background:var(–cream);
+padding:36px 28px;
+display:flex; flex-direction:column; justify-content:space-between;
+}
+.info-card.dark { background:var(–black); }
+
+.info-icon { font-size:28px; margin-bottom:16px; }
+.info-title {
+font-family:‘DM Serif Display’, serif;
+font-size:18px; color:var(–black); margin-bottom:6px;
+}
+.info-card.dark .info-title { color:var(–cream); }
+.info-val {
+font-size:13px; color:var(–muted); line-height:1.6;
+}
+.info-card.dark .info-val { color:rgba(244,239,230,0.4); }
+.info-highlight {
+font-family:‘DM Serif Display’, serif;
+font-size:36px; color:var(–gold); line-height:1;
+margin-top:8px;
+}
+
+/* ── SERVICES ── */
+.services {
+padding:110px 80px;
+background:var(–cream);
+}
+
+.sec-top {
+display:flex; justify-content:space-between; align-items:flex-end;
+margin-bottom:56px; padding-bottom:24px;
+border-bottom:1px solid rgba(0,0,0,0.07);
+}
+.sec-tag {
+font-size:10px; letter-spacing:4px; text-transform:uppercase;
+color:var(–gold); margin-bottom:10px;
+}
+.sec-title {
+font-family:‘DM Serif Display’, serif;
+font-size:clamp(30px, 3.5vw, 46px); line-height:1.1;
+color:var(–black);
+}
+.sec-note { font-size:13px; color:var(–muted); max-width:220px; text-align:right; line-height:1.6; }
+
+.svc-grid {
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:2px;
+}
+
+.svc-card {
+background:var(–off);
+padding:36px 28px;
+position:relative; overflow:hidden;
+transition:background 0.3s;
+cursor:default;
+}
+.svc-card:hover { background:var(–black); }
+.svc-card:hover .svc-name { color:var(–cream); }
+.svc-card:hover .svc-text { color:rgba(244,239,230,0.4); }
+.svc-card:hover .svc-ico { opacity:0.6; }
+
+.svc-n {
+font-family:‘DM Serif Display’, serif;
+font-size:48px; color:rgba(0,0,0,0.05);
+position:absolute; top:12px; right:16px;
+transition:color 0.3s; line-height:1;
+}
+.svc-card:hover .svc-n { color:rgba(201,169,110,0.08); }
+
+.svc-ico { font-size:26px; margin-bottom:18px; transition:opacity 0.3s; }
+.svc-name {
+font-family:‘DM Serif Display’, serif;
+font-size:18px; color:var(–black);
+margin-bottom:10px; transition:color 0.3s; line-height:1.2;
+}
+.svc-text { font-size:13px; color:var(–muted); line-height:1.7; transition:color 0.3s; }
+
+/* ── CONTACT STRIP ── */
+.contact-strip {
+background:var(–black);
+padding:80px;
+display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+}
+
+.strip-left { }
+.strip-left .sec-tag { margin-bottom:10px; }
+.strip-left .sec-title { color:var(–cream); margin-bottom:16px; }
+.strip-left p { font-size:15px; line-height:1.8; color:rgba(244,239,230,0.4); }
+
+.strip-right {
+display:flex; flex-direction:column; gap:2px;
+}
+
+.contact-row {
+display:flex; align-items:center; gap:18px;
+background:rgba(244,239,230,0.04);
+padding:20px 24px;
+border-left:2px solid transparent;
+text-decoration:none;
+transition:all 0.2s;
+}
+.contact-row:hover { border-left-color:var(–gold); background:rgba(201,169,110,0.06); }
+
+.cr-icon {
+width:40px; height:40px; flex-shrink:0;
+background:rgba(201,169,110,0.1);
+display:flex; align-items:center; justify-content:center;
+font-size:16px;
+}
+.cr-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(–muted); margin-bottom:3px; }
+.cr-val { font-size:15px; color:var(–cream); font-weight:400; }
+
+/* ── FORM ── */
+.form-section {
+padding:110px 80px;
+background:var(–off);
+display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;
+}
+
+.form-left .sec-title { margin-bottom:14px; }
+.form-left > p { font-size:15px; color:var(–muted); line-height:1.8; margin-bottom:36px; }
+
+.leistungen-list { display:flex; flex-direction:column; gap:2px; }
+.leistung-item {
+display:flex; align-items:center; gap:14px;
+padding:14px 0;
+border-bottom:1px solid rgba(0,0,0,0.06);
+font-size:14px; color:var(–text);
+}
+.leistung-item:last-child { border-bottom:none; }
+.leistung-item::before { content:‘→’; color:var(–gold); font-size:12px; }
+
+.form-box { background:var(–cream); padding:48px 40px; }
+.form-title {
+font-family:‘DM Serif Display’, serif;
+font-size:26px; margin-bottom:28px; color:var(–black);
+}
+
+.fg { margin-bottom:16px; }
+.fg label { display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(–muted); margin-bottom:7px; }
+.fg input, .fg select, .fg textarea {
+width:100%; padding:13px 15px;
+background:var(–off); border:1px solid transparent;
+color:var(–text); font-family:‘DM Sans’, sans-serif; font-size:14px;
+outline:none; transition:border-color 0.2s; resize:none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(–gold); }
+.fg textarea { height:90px; }
+.fg-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+.form-submit {
+width:100%; padding:15px;
+background:var(–black); color:var(–cream);
+font-family:‘DM Sans’, sans-serif;
+font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+font-weight:500; border:none; cursor:pointer;
+transition:background 0.2s;
+}
+.form-submit:hover { background:var(–gold); color:var(–black); }
+
+/* ── FOOTER ── */
+footer {
+background:var(–black);
+padding:36px 80px;
+display:flex; justify-content:space-between; align-items:center;
+border-top:1px solid var(–line);
+}
+.footer-logo { font-family:‘DM Serif Display’, serif; font-size:16px; color:var(–cream); }
+.footer-logo span { color:var(–gold); }
+.footer-info { font-size:12px; color:var(–muted); text-align:center; line-height:1.7; }
+.footer-copy { font-size:11px; color:rgba(255,255,255,0.15); }
+
+/* ── ANIM ── */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(18px); }
+to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── MOBILE ── */
+@media (max-width:880px) {
+nav { padding:14px 24px; }
+.nav-links { display:none; }
+.hero { grid-template-columns:1fr; }
+.hero-left { padding:100px 28px 60px; }
+.hero-right { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+.services { padding:80px 24px; }
+.svc-grid { grid-template-columns:1fr 1fr; }
+.sec-top { flex-direction:column; align-items:flex-start; gap:10px; }
+.sec-note { text-align:left; }
+.contact-strip { grid-template-columns:1fr; padding:60px 24px; gap:36px; }
+.form-section { grid-template-columns:1fr; padding:80px 24px; gap:40px; }
+footer { padding:28px 24px; flex-direction:column; gap:12px; text-align:center; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Keser <span>·</span> Hausmeisterservice</div>
+  <div class="nav-links">
+    <a href="#services">Leistungen</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#anfrage">Anfrage</a>
+  </div>
+  <a href="tel:+4906221434128" class="nav-tel">06221 434 128 6</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Heidelberg & Umgebung</div>
+    <h1>
+      Handwerklich<br>ein <em>Allrounder.</em>
+    </h1>
+    <p class="hero-desc">
+      Bülent Keser — Ihr zuverlässiger Hausmeisterservice in Heidelberg-Wieblingen. Von Reparaturen über Reinigung bis Entrümpelung. Alles aus einer Hand.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:+4906221434128" class="btn-gold">Jetzt anrufen</a>
+      <a href="#anfrage" class="btn-outline">Anfrage stellen</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="info-card">
+      <div>
+        <div class="info-icon">📞</div>
+        <div class="info-title">Direkt erreichbar</div>
+        <div class="info-val">Tel: 06221 434 128 6<br>Mobil: 0151 229 477 56</div>
+      </div>
+    </div>
+    <div class="info-card dark">
+      <div>
+        <div class="info-icon">⚡</div>
+        <div class="info-title">Schnelle Reaktion</div>
+        <div class="info-val" style="color:rgba(244,239,230,0.4)">In der Regel innerhalb von</div>
+        <div class="info-highlight">24h</div>
+      </div>
+    </div>
+    <div class="info-card dark">
+      <div>
+        <div class="info-icon">📍</div>
+        <div class="info-title">Standort</div>
+        <div class="info-val" style="color:rgba(244,239,230,0.4)">Hermann-Treiber-Str. 23<br>69123 Heidelberg</div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div>
+        <div class="info-icon">🛡️</div>
+        <div class="info-title">Versichert & verlässlich</div>
+        <div class="info-val">Haftpflichtversichert. Faire Preise. Keine versteckten Kosten.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+  <div class="sec-top">
+    <div>
+      <div class="sec-tag">Was wir machen</div>
+      <h2 class="sec-title">Unsere Leistungen</h2>
+    </div>
+    <p class="sec-note">Alles rund ums Haus — für Privat & Gewerbe.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-n">01</div>
+      <div class="svc-ico">🔧</div>
+      <div class="svc-name">Reparaturen & Instandhaltung</div>
+      <p class="svc-text">Türen, Fenster, Sanitär, kleine Schäden — wir kümmern uns bevor es teurer wird.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">02</div>
+      <div class="svc-ico">🏠</div>
+      <div class="svc-name">Gebäude­reinigung</div>
+      <p class="svc-text">Treppenhäuser, Büros, Tiefgaragen, Fensterreinigung — sauber & gepflegt.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">03</div>
+      <div class="svc-ico">📦</div>
+      <div class="svc-name">Entrümpelung & Umzug</div>
+      <p class="svc-text">Keller, Wohnungen, Haushaltsauflösungen — Transport & fachgerechte Entsorgung.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">04</div>
+      <div class="svc-ico">❄️</div>
+      <div class="svc-name">Winterdienst</div>
+      <p class="svc-text">Schneeräumung & Streudienst — zuverlässig, auch am frühen Morgen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+
+<section class="contact-strip" id="contact">
+  <div class="strip-left">
+    <div class="sec-tag">Kontakt</div>
+    <h2 class="sec-title" style="color:var(--cream)">Sprechen Sie<br>uns direkt an.</h2>
+    <p>Kein langes Formular — einfach anrufen oder eine kurze Nachricht schicken. Wir melden uns schnell.</p>
+  </div>
+  <div class="strip-right">
+    <a href="tel:+4906221434128" class="contact-row">
+      <div class="cr-icon">📞</div>
+      <div>
+        <div class="cr-label">Telefon</div>
+        <div class="cr-val">06221 434 128 6</div>
+      </div>
+    </a>
+    <a href="tel:+4901512294775" class="contact-row">
+      <div class="cr-icon">📱</div>
+      <div>
+        <div class="cr-label">Mobil</div>
+        <div class="cr-val">0151 229 477 56</div>
+      </div>
+    </a>
+    <a href="mailto:info@keser-hausmeisterservice.de" class="contact-row">
+      <div class="cr-icon">✉️</div>
+      <div>
+        <div class="cr-label">E-Mail</div>
+        <div class="cr-val">info@keser-hausmeisterservice.de</div>
+      </div>
+    </a>
+    <div class="contact-row">
+      <div class="cr-icon">📍</div>
+      <div>
+        <div class="cr-label">Adresse</div>
+        <div class="cr-val">Hermann-Treiber-Str. 23, 69123 Heidelberg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+
+<section class="form-section" id="anfrage">
+  <div class="form-left">
+    <div class="sec-tag">Kostenlose Anfrage</div>
+    <h2 class="sec-title">Was dürfen<br>wir für Sie tun?</h2>
+    <p>Schildern Sie uns kurz Ihr Anliegen — wir erstellen Ihnen ein unverbindliches Angebot.</p>
+    <div class="leistungen-list">
+      <div class="leistung-item">Hausmeisterservice & Reparaturen</div>
+      <div class="leistung-item">Gebäude- & Büroreinigung</div>
+      <div class="leistung-item">Bauendreinigung</div>
+      <div class="leistung-item">Entrümpelung & Haushaltsauflösung</div>
+      <div class="leistung-item">Umzug & Transport</div>
+      <div class="leistung-item">Winterdienst</div>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <div class="form-title">Anfrage senden</div>
+    <div class="fg">
+      <label>Ihr Name</label>
+      <input type="text" placeholder="Max Mustermann">
+    </div>
+    <div class="fg-2">
+      <div class="fg">
+        <label>Telefon</label>
+        <input type="tel" placeholder="06221 ...">
+      </div>
+      <div class="fg">
+        <label>E-Mail</label>
+        <input type="email" placeholder="name@email.de">
+      </div>
+    </div>
+    <div class="fg">
+      <label>Leistung</label>
+      <select>
+        <option>Hausmeisterservice / Reparatur</option>
+        <option>Gebäudereinigung</option>
+        <option>Entrümpelung / Umzug</option>
+        <option>Winterdienst</option>
+        <option>Sonstiges</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Ihre Nachricht</label>
+      <textarea placeholder="Kurze Beschreibung Ihres Anliegens..."></textarea>
+    </div>
+    <button class="form-submit">Anfrage absenden →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Keser <span>·</span> Hausmeisterservice</div>
+  <div class="footer-info">
+    Hermann-Treiber-Str. 23 · 69123 Heidelberg<br>
+    Tel: 06221 434 128 6 · info@keser-hausmeisterservice.de
+  </div>
+  <div class="footer-copy">© 2025</div>
+</footer>
+
+</body>
+</html>
